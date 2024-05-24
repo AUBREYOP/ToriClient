@@ -1,0 +1,12 @@
+[0.1.0]
+Welcome new Tori users! This update addresses some smaller bugs and quality of life fixes that you as a community suggested, as well as some sponsor-related things.
+If you find any issues or have any suggestions, please feel free to let us know in the Discord!
+
+- Fixed launcher randomly logging you out on restart
+- Fixed some mod manager issues
+- Mod manager no longer allows you to edit mods while the game is running
+- Added third party credits button to the Settings menu
+- Fixed memory slider not saving it's state on launcher restart
+- Made memory slider automatically set max RAM based off your computer's hardware
+- Added Wepwawet and FFATL sponsors to the sidebar
+- Cleanup some stuff internally

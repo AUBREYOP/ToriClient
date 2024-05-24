@@ -1,0 +1,9 @@
+!! MAKE SURE DEV TOOLS IS DISABLED !!
+rename build.js to main.js, move main.js to temp.js
+start application
+empty window will appear
+close empty window once main.jsc appears
+move build.js outside directory
+move temp.js outside directory
+rename main-c.js to main.js
+npm run start to test, if runs, make build

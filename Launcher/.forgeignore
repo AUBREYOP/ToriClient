@@ -1,0 +1,5 @@
+precheck.txt
+build/
+build/*
+build.js
+temp.js

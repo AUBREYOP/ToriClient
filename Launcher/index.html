@@ -1,0 +1,284 @@
+<!-- ToriLauncher by WifiRouter 
+Please do not redistribute my work or any decompiled source code without my permission.
+I am a solo developer and I will be devastated 💔
+thanks :3
+
+can i get tori client early?
+psalm 37:420 skibidi skibidi skibidi skibidi skibidi skibidi skibidi skibidi 
+
+ghost was here o/ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tori Launcher [BETA]</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="https://kit.fontawesome.com/b2ec349ebe.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="resource/app-icon.ico">
+</head>
+<body id="body"></body>
+    <div class="darken">
+        
+    </div>
+
+    <div class="sponsor-container">
+        <div class="sponsor">
+            <i class="fa-solid fa-xmark close-button" onclick="closeSponsor();"></i>
+            <div class="wepwawet">
+                <div class="half1">
+                    <p style="margin-top: 25px;">If you want a 24/7 uptime alternative to sharing your Tori world with your friends through World Host, Wepwawet is here to help!</p>
+                    <p>Wepwawet hosting offers secure, fast and reliable 24/7 hosting for an affordable, low price. New users of Wepwawet hosting can get 20% off of their first billing cycle using code tori at checkout.<br><a onclick='window.link.open("https\:/\/wepwawet.net/p/toriclient/");' style="cursor: pointer;">https://wepwawet.net/p/toriclient/</a></p>
+                    <h2 style="margin-bottom: 25px; line-height: 36px;">Use code <code>tori</code> for 20% off your first cycle!</h2>
+                </div>
+                <div class="half2">
+                    <img src="resource/wepwawet.png" height="150px">
+                </div>
+            </div>
+            <div class="ffatl">
+                <div class="half1">
+                    <p style="margin-top: 25px;">If you are interested in Minecraft PvP, FFA Tier List may be for you! FFATL allows you to be tested in the diamond sword PvP gamemode to determine your tier in PvP. This is done by fighting one of FFATL's Tier Testers. The first person to get to 10 kills wins the test, and the amount of kills you get and the way you get them determine your Tier.</p>
+                    <p style="margin-bottom: 25px;">If you would like to be Tier Tested, head over to FFATL's Discord server at <a onclick='window.link.open("https\:/\/discord.gg/pvptiers");' style="cursor: pointer;">https://discord.gg/pvptiers</a> and open a test ticket to be put in to a queue for a Tier tester to be assigned to you. You must have a Discord account to do this.</p>
+                </div>
+                <div class="half2">
+                    <img src="resource/ffatl.png" height="150px">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="startup-overlay" id="startup-overlay">
+        <div class="loader-screen" id="loader-screen" style="display: flex; justify-content: center; align-items: center;">
+            <span class="loader-medium soverlay-spinner" id="soverlay-spinner" style="margin-right: 8px;"></span>
+            <p id="launch-progress" class="launch-progress">can i get tori client early?</p>
+        </div>
+        <button class="log-out-button-error" id="log-out-button-error" onclick="logOut();">Log Out</button>
+        <div class="whitelist-wallpaper" id="whitelist-wallpaper" style="margin-left: -2%; opacity: 0;"></div>
+        <div class="whitelist-container" id="whitelist-container" style="margin-right: -2%; opacity: 0;">
+            <div class="text">
+                <h1>Login to Tori Client</h1>
+                <p>Login with your Minecraft account to gain access to all the launcher features, including checking whitelist status, manage cosmetics, mods, and more!</p>
+            </div>
+           <button id="sign-in-with-microsoft" class="sign-in-with-microsoft enabled" onclick="altLogin();"><img src="resource/microsoft-logo.png" id="alt-login-icon"> Sign in with Microsoft<span class="alt-login-spinner" id="alt-login-spinner"></span></button>
+            <div class="not-whitelisted" id="not-whitelisted">
+                <i class="fa-solid fa-circle-xmark"></i>
+                <p>You're not whitelisted!</p>
+            </div>
+            <div class="button-list" id="button-list">
+                <button id="not-whitelisted-logout" onclick="$('#not-whitelisted-logout').text(''); $('#not-whitelisted-logout').append(`<span class='alt-login-spinner' id='alt-login-spinner' style='display: block !important;'></button>`); logOut();">Log Out</span></button>
+                <button id="not-whitelisted-retry" onclick="retryWhitelist();">Retry</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="changelog-box" id="changelog-box">
+        <div class="container">
+            <p class="title">Changelog</p>
+            <div class="text">
+                <p class="changelog" id="changelog">Loading...</p>
+            </div>
+            <button class="close" onclick="$('#changelog-box').css('display', 'none')">Close</button>
+        </div>
+    </div>
+
+    <div class="mod-manager-container" id="mod-manager-container" style="display: none; opacity: 0;">
+        <div class="mod-manager" id="mod-manager" style="transform: scale(0.8);">
+            <p class="header">Mod Manager <i class="fa-solid fa-gears icon"></i></p>
+            <button class="button red red-button" id="closeModManager" onclick="closeModManager();">Close</button>
+            <button class="button blue-button" id="addMod" onclick="openFolder(true);" style="margin-right: 118px;">Open Mods</button>
+            <button class="button green-button" id="addMod" onclick="addMod();" style="margin-right: 252px;">Add Mods</button>
+            <div class="mod-list" id="mod-list">
+                <div class="loader-container" id="loader-container">
+                    <span class="loader-small" id="01c23c0a-446c-4aa2-a065-a127d717c845"></span>
+                </div>
+                <div class="loader-container" id="loader-container-nomods">
+                    <p>Nothing here! Perhaps you need to launch the game first?</p>
+                </div>
+                <div class="loader-container" id="loader-container-gamerunning">
+                    <p>Game is running! We can't edit your mods while the game is running :(</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="partner-overlay-creator" id="partner-overlay-creator" style="display: none;">
+        <div class="partner-details" id="partner-details">
+            <i class="fa-solid fa-xmark close" onclick="removePartnerOverlay('creator')"></i>
+            <img class="head" alt="head" src="https://mc-heads.net/avatar/3b22a598-34e5-4188-866b-e56b206b4629" id="partner-creator-head">
+            <div class="text">
+                <p class="username" id="partner-creator-username">PiyoFeather</p>
+                <p class="type" id="partner-creator-type">Creator</p>
+            </div>
+            <div class="social-media" id="partner-creator-sm">
+                <i class="fa-brands fa-youtube" style="color: #ff2100;" id="partner-creator-yt"></i>
+                <i class="fa-brands fa-discord" style="color: #5662f6;" id="partner-creator-discord"></i>
+                <i class="fa-brands fa-x-twitter" id="partner-creator-x"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="partner-overlay-server" id="partner-overlay-server" style="display: none;">
+        <div class="partner-details" id="partner-server-details">
+            <i class="fa-solid fa-xmark close" onclick="removePartnerOverlay('server')"></i>
+            <div class="player-info">
+                <img class="head" alt="head" src="https://media.discordapp.net/stickers/1103539625466806304.webp?size=160" id="partner-server-head">
+                <div class="text">
+                    <p class="username" id="partner-server-username">[name]</p>
+                    <p class="type" id="partner-server-type">[partner type]</p>
+                </div>
+                <div class="social-media" id="partner-server-sm">
+                    <i class="fa-brands fa-youtube" style="color: #ff2100;" id="partner-server-yt"></i>
+                    <i class="fa-brands fa-discord" style="color: #5662f6;" id="partner-server-discord"></i>
+                    <i class="fa-brands fa-x-twitter" id="partner-server-x"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <!-- <span class="selected"> -->
+        <img src="resource/logo.png" class="logo">
+        <div class="item border selected" onclick="switchPage('home')" id="button-home">
+            <i class="fa-solid fa-house"></i>
+        </div>
+        <div class="item border" onclick="openStore()" id="button-store">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+        <div class="item border" onclick="openTwitter()">
+            <i class="fa-brands fa-x-twitter"></i>
+        </div>
+        <div class="item border" onclick="openDiscord()">
+            <i class="fa-brands fa-discord"></i>
+        </div>
+        <div class="item border" onclick="switchPage('customization')" id="button-customization">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+        <div class="item border big float-bottom" onclick="openSponsorsPopups();" id="button-sponsors" style="margin-bottom: 75px; position: fixed; z-index: 15;">
+            <i class="fa-solid fa-handshake" id="sponsor-icon"></i>
+            <i class="fa-solid fa-circle-chevron-right" id="sponsor-icon-arrow" style="position: fixed; opacity: 0;"></i>
+        </div>
+        <div class="item border big float-bottom" onclick="switchPage('settings')" id="button-settings">
+            <i class="fa-solid fa-gear"></i>
+        </div>
+        <div class="sponsors-icons">
+            <div class="item border float-bottom big one" onclick="openSponsor(1)">
+                <i class="fa-solid fa-server"></i>
+            </div>
+            <div class="item border float-bottom big two" onclick="openSponsor(2)">
+                <i class="fa-solid fa-clipboard-list"></i>
+            </div>
+        </div>
+    </div>
+    <div class="content" id="page-home">
+        <div class="topbar">
+            <div class="featured-servers border-purple">
+                <div class="servers" onWheel="this.scrollLeft+=event.deltaY>0?100:-100" id="featured-servers-div">
+                    <!-- featured servers auto populate here sometimes -->
+                </div>
+            </div>
+            <div class="accounts border-purple" onclick="signIn();">
+                <img src="https://mc-heads.net/head/ec669503-a227-4c7c-b27b-9d115f2daa45" class="head" style="display: none;" id="head">
+                <i class="fa-solid fa-triangle-exclamation warning" id="warning" style="display:none;"></i>
+                <span class="username" id="username" style="display:none;">Not logged in!</span>
+                <span class="loader-small" id="loader"></span>
+            </div>
+            <div class="mods border-purple" id="mods-manager">
+                <i class="fa-solid fa-gears icon"></i>
+                <span class="text">Manage Mods</span>
+            </div>
+        </div>
+        <div class="launch border-green">
+            <div class="overlay" onmouseover="showOverlay();" onmouseleave="hideOverlay();">
+                <div class="options" id="options">
+                    <button class="launch-option" id="launch" onclick="launchGame();">LAUNCH 🚀</button>
+                    <!-- <button class="launch-option" id="change-ver">Change Version</button> -->
+                </div>
+                <div class="launching center" id="launching">
+                    <span class="loader-big"></span>
+                    <p>Launching...</p>
+                </div>
+                <div class="launching center">
+                    <div class="progressbox" id="launching-progress">
+                        <p class="message" id="progresstext">Downloading mods...</p>
+                        <progress value="1" max="0" id="progressbar"></progress>
+                        <p class="txtprogress" id="txtprogress">0/0</p>
+                    </div>
+                </div>
+            </div>
+            <p class="bird-client">鳥クライアント</p>
+            <p class="version">1.20.1</p>
+        </div>
+        <div class="flex">
+            <div class="news border-gray" id="news-div">
+                <!-- news auto populate here sometimes -->
+            </div>
+            <div class="partners border-gray">
+                <p class="heading">Partners</p>
+                <div class="partners-list" id="partners-div">
+                    <!-- partners auto populate here sometimes -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="customization" id="page-customization">
+        <p>Customization page - Coming soon!</p>
+    </div>
+
+    <div class="settings" id="page-settings">
+        <div class="item">
+            <div class="text">
+                <p class="name">Open game folder</p>
+                <p class="description">Opens the .minecraft folder in your file browser.</p>
+            </div>
+            <button class="button" onclick="openFolder(false)">Open</button>
+        </div>
+        <div class="item">
+            <div class="text">
+                <p class="name">Upload log to support</p>
+                <p class="description">Uploads the launcher log to our support team for assistance.</p>
+            </div>
+            <button class="button" onclick="pastebin()" id="pastebinButton">Upload</button>
+        </div>
+        <div class="item">
+            <div class="text">
+                <p class="name">Adjust allocated game memory</p>
+                <p class="description">How much memory we should allocate to the game (Recommended: 6GB)</p>
+            </div>
+            <div class="info">
+                <input type="range" min="2" max="16" value="6" class="slider" id="ram-slider">
+                <div class="info-text">
+                    <p class="min">2 GB</p>
+                    <p class="current-allocation" id="mem-size">6 GB</p>
+                    <p class="max">16 GB</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="text">
+                <p class="name">Usage and Licenses</p>
+                <p class="description">Opens the Tori Client Usage and Licenses.</p>
+            </div>
+            <button class="button" onclick="thirdParty();">Open</button>
+        </div>
+        <div class="item">
+            <div class="text">
+                <p class="name">Log out of account</p>
+                <p class="description">Logs you out of your Minecraft account. (Launcher will reload)</p>
+            </div>
+            <button class="button red red-button" onclick="logOut()" id="logoutButton">Log Out</button>
+        </div>
+    </div>
+
+    <div class="popup-container" onclick="hidePopup();">
+        <div class="popup green" id="popup">
+            <i class="fa-solid fa-circle-check" id="popup-icon"></i>
+            <p class="description" id="popup-description">hi chat</p>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+  </body>
+</body>
+</html>

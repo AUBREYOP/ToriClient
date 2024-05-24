@@ -1,0 +1,8 @@
+# big ass folders
+.minecraft
+.minecraft/
+.minecraft/*
+out/
+node_modules
+launcher.log
+launcher.log
